@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Pedra Papel Teroura</title>
+</head>
+
+<body>
+
+    <script>
+
+        //A - Usuário faz uma escolha
+        var escolhas = ['pedra', 'papel', 'tesoura'];
+        var escolhaUsuario = prompt("Escolha: pedra, papel ou tesoura?").toLowerCase();
+
+        //B - Computador faz uma escolha
+        var randomValor = Math.random();
+        var escolhaComputador;
+
+        switch (true) {
+            case randomValor < 0.33:
+                escolhaComputador = 'pedra';
+                break;
+            case randomValor >= 0.33 && randomValor < 0.66:
+                escolhaComputador = 'papel';
+                break;
+            case randomValor >= 0.66:
+                escolhaComputador = 'tesoura';
+                break;
+        }
+
+        //C - Determinar o vencedor
+        var resultado;
+        if (escolhaUsuario === escolhaComputador) {
+            resultado = "Empate!";
+        } else if (
+            (escolhaUsuario === 'pedra' && escolhaComputador === 'tesoura') ||
+            (escolhaUsuario === 'tesoura' && escolhaComputador === 'papel') ||
+            (escolhaUsuario === 'papel' && escolhaComputador === 'pedra')
+        ) {
+            resultado = "Você ganhou!";
+        } else {
+            resultado = "Você perdeu!";
+        }
+
+        // Mostrar o resultado
+        alert("Você escolheu: " + escolhaUsuario + "\nO computador escolheu: " + escolhaComputador + "\n" + resultado);
+
+    </script>
+
+</body>
+</html>

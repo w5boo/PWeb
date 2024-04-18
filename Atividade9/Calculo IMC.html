@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado IMC</title>
+</head>
+<body>
+
+<script>
+    // Função para calcular o IMC (Índice de Massa Corporal)
+    function calcularIMC(altura, peso) {
+        return peso / (altura * altura);
+    }
+
+    // Função para classificar o IMC
+    function classificarIMC(imc) {
+        if (imc < 18.5) {
+            return "Magreza";
+        } else if (imc >= 18.5 && imc < 25) {
+            return "Normal";
+        } else if (imc >= 25 && imc < 30) {
+            return "Sobrepeso";
+        } else if (imc >= 30 && imc < 40) {
+            return "Obesidade";
+        } else {
+            return "Obesidade Grave";
+        }
+    }
+
+    // Função para determinar o grau de obesidade
+    function determinarGrauObesidade(classificacao) {
+        if (classificacao === "Obesidade") {
+            return "I";
+        } else if (classificacao === "Obesidade Grave") {
+            return "III";
+        } else {
+            return "0";
+        }
+    }
+
+    // Função principal para exibir o resultado
+    function calcularIMCeMostrarResultado() {
+        const alturaInput = prompt("Digite a sua altura em metros (com duas casas decimais):");
+        const pesoInput = prompt("Digite o seu peso em quilogramas:");
+
+        const altura = parseFloat(alturaInput.replace(",", "."));
+        const peso = parseFloat(pesoInput.replace(",", "."));
+
+        if (isNaN(altura) || isNaN(peso)) {
+            document.body.innerHTML = "<h2>Por favor, insira valores numéricos válidos para altura e peso.</h2>";
+            return;
+        }
+
+        const imc = calcularIMC(altura, peso);
+        const classificacao = classificarIMC(imc);
+        const grauObesidade = determinarGrauObesidade(classificacao);
+
+        const resultadoHTML = `
+            <h2>Resultado do IMC:</h2>
+            <p><strong>IMC:</strong> ${imc.toFixed(2)}</p>
+            <p><strong>Classificação:</strong> ${classificacao}</p>
+            <p><strong>Obesidade (grau):</strong> ${grauObesidade}</p>
+        `;
+        document.body.innerHTML = resultadoHTML;
+    }
+
+    // Chamar a função principal
+    calcularIMCeMostrarResultado();
+</script>
+
+</body>
+</html>
